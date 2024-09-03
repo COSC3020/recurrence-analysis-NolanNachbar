@@ -30,3 +30,43 @@ function mystery(n) {
 Add your answer to this markdown file. [This
 page](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions)
 might help with the notation for mathematical expressions.
+
+
+First analysing the function
+```javascript
+function mystery(n) {
+    if(n <= 1)
+        return;
+    else {
+        mystery(n / 3);\\ This will take T(n/3) time complexity
+        var count = 0;
+        mystery(n / 3); \\ This will take T(n/3) time complexity
+        for(var i = 0; i < n*n; i++) { \\ This loop will take n^2 time complexity
+            for(var j = 0; j < n; j++) {\\ This loop will take n time complexity
+                for(var k = 0; k < n*n; k++) { \\ This loop will take n^2 time complexity
+                    count = count + 1; 
+                }
+            }
+        }
+        mystery(n / 3); \\ This will take T(n/3) time complexity
+    }
+}
+```
+
+Combining all those we get
+T(n) = 1 if n <= 1
+or else
+T(n) = T(n/3) + T(n/3) + n^2*n*n^2 + T(n/3) = 3 T(n/3) + n^5
+
+Now substituting,
+$$
+T(n) = 3 T(n/3) + n^5 
+= 3(3T(n/9) + (n/3)^5) + n^5
+= 9T(n/9) + \frac{n^5}{3^4} + n^5
+= 9(3T(n/27) + (n/9)^5) + \frac{n^5}{3^4} + n^5
+= 27T(n/27) + \frac{n^5}{3^5} + \frac{n^5}{3^4} + n^5
+\vdots
+= 3^i T(n/3^i) + \frac{n^5}{3^{4(i - 1)}} + \frac{n^5}{^{4(i - 2)}} + \dots + n^5
+$$
+For i = log n
+T(n) = 3^{log n} T(n/3^{log n}) + \frac{n^5}{3^{4({log n} - 1)}} + \frac{n^5}{^{4({log n} - 2)}} + \dots + n^5
