@@ -54,33 +54,48 @@ function mystery(n) {
 ```
 
 Combining all those we get:
-$$T(n) = 1 if n <= 1$$
-or else
-$$T(n) = T(n/3) + T(n/3) + n^2*n*n^2 + T(n/3) = 3 T(n/3) + n^5$$
+Combining all those we get:
+
+$$
+T(n) = 
+\begin{cases} 
+1 & \text{if } n \leq 1 \\
+3 T(n/3) + n^5 & \text{otherwise}
+\end{cases}
+$$
 
 Now substituting,
+
 $$
 T(n) = 3 T(n/3) + n^5 
 $$
+
 $$
-= 3(3T(n/9) + (n/3)^5) + n^5
+= 3 \left(3T(n/9) + \left(\frac{n}{3}\right)^5 \right) + n^5
 $$
+
 $$
-= 9T(n/9) + \frac{n^5}{3^4} + n^5
+= 9T(n/9) + \frac{n^5}{3^5} + n^5
 $$
+
 $$
-= 9(3T(n/27) + (n/9)^5) + \frac{n^5}{3^4} + n^5
+= 9 \left(3T(n/27) + \left(\frac{n}{9}\right)^5 \right) + \frac{n^5}{3^5} + n^5
 $$
+
 $$
 = 27T(n/27) + \frac{n^5}{3^5} + \frac{n^5}{3^4} + n^5
 $$
+
 $$
 \vdots
 $$
+
 $$
-= 3^i T(n/3^i) + \frac{n^5}{3^{4(i - 1)}} + \frac{n^5}{^{4(i - 2)}} + \dots + n^5
+= 3^i T(n/3^i) + \frac{n^5}{3^{5(i - 1)}} + \frac{n^5}{3^{5(i - 2)}} + \dots + n^5
 $$
-For $i = log n$
+
+For \(i = \log_3 n\),
+
 $$
-T(n) = 3^{log n} T(n/3^{log n}) + \frac{n^5}{3^{4({log n} - 1)}} + \frac{n^5}{^{4({log n} - 2)}} + \dots + n^5
+T(n) = 3^{\log_3 n} T(n/3^{\log_3 n}) + \frac{n^5}{3^{5(\log_3 n - 1)}} + \frac{n^5}{3^{5(\log_3 n - 2)}} + \dots + n^5
 $$
