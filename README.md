@@ -99,3 +99,18 @@ For $i = \log_3 n$,
 $$
 T(n) = 3^{log_3 n} T(n/3^{log_3 n}) + \frac{n^5}{3^{5(log_3 n - 1)}} + \frac{n^5}{3^{5(log_3 n - 2)}} + \dots + n^5
 $$
+
+$$
+= 3^{log_3 n} T(1) + \frac{n^5}{3^{5(log_3 n - 1)}} + \frac{n^5}{3^{5(log_3 n - 2)}} + \dots + n^5
+$$
+
+$$
+= n + \frac{n^5}{3^{5(log_3 n - 1)}} + \frac{n^5}{3^{5(log_3 n - 2)}} + \dots + n^5
+$$
+Note that 
+$$
+\frac{n^5}{3^{5(log_3 n - k)}}, k = 1,2,3,4,...,i
+$$
+Are all constants. 
+
+So, $n^5$ is the leading term, because $n^5 >> n$. Hence, $T(n) \in O(n^5)$
