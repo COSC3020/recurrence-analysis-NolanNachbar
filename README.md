@@ -54,9 +54,9 @@ function mystery(n) {
 ```
 
 Combining all those we get:
-T(n) = 1 if n <= 1
+$$T(n) = 1 if n <= 1$$
 or else
-T(n) = T(n/3) + T(n/3) + n^2*n*n^2 + T(n/3) = 3 T(n/3) + n^5
+$$T(n) = T(n/3) + T(n/3) + n^2*n*n^2 + T(n/3) = 3 T(n/3) + n^5$$
 
 Now substituting,
 $$
